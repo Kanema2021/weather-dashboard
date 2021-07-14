@@ -1,0 +1,83 @@
+/* /*  */
+body {
+    background-color:rgb(197, 216, 218)
+}
+#title {
+    background-color: rgb(68, 84, 108);
+    height: 60px;
+    color: seashell;
+    text-align: center;
+}
+
+.searchLabel {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    padding-top: 2px;
+    margin-left: 29px;
+    background-color: seashell;
+    
+}
+
+#citySearch {
+    margin-left: 15px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: seashell;
+}
+
+#searchBtn {
+    margin-top: 7px;
+    margin-left: 15px;;
+    width: 192px;
+    background-color: rgb(68, 84, 108);
+    color: seashell;
+    border-radius: 3px;
+   
+}
+
+#weatherSearchResults {
+    background-color: rgb(197, 216, 218)
+    padding-left: 30px;
+    
+
+       
+}
+
+ #city {
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 17px;
+    font-weight: bolder;
+    color: rgb(65, 74, 87);
+    
+}
+
+.currentWeather {
+    padding-bottom: 30px;
+    font-weight: bolder;
+    font-size: 20px;
+    color: rgb(65, 74, 87);
+}
+
+#weatherIcon {
+    padding-left: 50px;
+}
+
+
+
+/* .results {
+    color:rgb(109, 108, 108);
+    
+} */
+
+/* #resultsBox {
+    
+    border-color: rgb(109, 108, 108); 
+    margin-left: -14px;
+    height: fit-content;
+   
+    
+} */
+
+
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <h1 id="title" class="col-12">Karen's Weather App</h1>
+            <div class="col-3">
+                <!-- <form action="" onsubmit="return false"> -->
+                <input type="text" id="citySearch" placeholder="Type place here!" name="q">
+                <button id="searchBtn">Submit</button>
+                <div class="error"></div>
+            </div>
+            <div id=resultsBox class="col-9">
+                <div id=weatherSearchResults>
+                    <div class="location">
+                        <!-- <img id="weatherIcon" src="" alt=""> -->
+                        <div class="row">
+                            <div class="results" id="city"></div>
+                            <img id="weatherIcon" src="" alt="">
+                        </div> 
+                    </div>
+                    <div>
+                        <div class="currentWeather" id="date"></div>
+                        <div class="currentWeather" id="temp"></div>
+                        <div class="currentWeather" id="humidity"></div>
+                        <div class="currentWeather" id="windSpeed"></div>
+                        <div class="currentWeather" id="uvIndex"></div>
+                    </div>
+                </div>
+            </div>
+            <section class="forecastSection row" id="">
+                <div class="col" id="forecastContainer"></div>
+
+            </section>
+
+
+
+
+            <!-- <div class="row" id="forecastContainer"> 
+                <img class="fiveDayForecast" id="weatherIcon" src="" alt="">
+                <ul>
+                <li class="fiveDayForecast" id="forecastDate"></li>
+                <li class="fiveDayForecast" id="forecastTemp"></li>
+                <li class="fiveDayForecast" id="forecastHumidity"></li>
+                <li class="fiveDayForecast" id="forecastWindSpeed"></li>
+                <li class="fiveDayForecast" id="forecastUvIndex"></li>
+                </ul>
+            </div>   -->
+
+
+
+
+
+
+
+
+            <!-- <div id=resultsBox class="col-9">
+
+                <ul id=weatherSearchResults>
+                    <li id="icon"><img src="" alt=""></li>
+                    <li class="results" id="city"></li>
+                    <li style="font-weight: bold;" class="results" id="date"></li>
+                    <li style="font-weight: bold;" class="results" id="fahrenheit"></li>
+                    <li style="font-weight: bold;" class="results" id="humidity"></li>
+                    <li style="font-weight: bold;" class="results" id="windSpeed"></li>
+                    <li style="font-weight: bold;" class="results" id="uvIndex"></li>
+                </ul>
+            </div>
+        </div> -->
+
+
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+        <script src="/script.js"></script>
+</body>
+
+</html> -
