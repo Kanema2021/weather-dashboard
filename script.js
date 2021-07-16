@@ -1,77 +1,68 @@
 // const cities = ["London", "Paris", "New York", "california"];
+// const today = new Date();
+// const day = moment().format('dddd MMMM Do YYYY');
+
+
 const today = new Date();
 const day = moment().format('dddd MMMM Do YYYY');
 const key = 'f5c3aa4034bf39238e3769ad247499fd';
 const searchBtn = $('#searchBtn')
 const citySearch = $('#citySearch');
 
-function fiveDayForecast () {
+function fiveDayForecast (event) {
+  // get citysearch element by id 
+  // set the innerText equal to an empty string
   $.get({
-    url: 'https://api.openweathermap.org/data/2.5/forecast?q=' + citySearch.val() + '&appid=' + key
+    url: 'https://api.openweathermap.org/data/2.5/forecast?q=' + citySearch.val() + '&appid=' + key + '&units=imperial'
   }).then(function(forecast) {
-    console.log (forecast.list)
+    // console.log (forecast.list)
 
+    //for loop to pull 5 days of forecast 
+    
     for(let i = 4; i < forecast.list.length; i += 8){
-      console.log(forecast.list[i])
+      const days = forecast.list[i];
+      // console.log('FORECAST OBJECT: ', forecast.list[i]);
+      // console.log('FORECAST TEMP DATA: ', forecast.list[i].main);
+      // console.log('FORECAST HUMIDITY DATA: ', forecast.list[i].main);
 
-forecast.list.forEach(days => {
-      // Create a new element to hold each day's data in the DOM:
-      // const nextDay = new Date(i)
-      // const forecastDateEl=document.createElement("p")
-      // forecastDateEl.appendChild(nextDay)
-      
       // Create an element to hold the temp data:
+      
       const forecastContainer = document.getElementById("forecastContainer")
-      const forecastTemp = days.main.temp - 273 *1.8 + 32;
-      const forecastTempEl = document.createElement('p')
-      forecastTempEl.innerText = Math.round(forecastTemp) + '°F'
-      forecastContainer.appendChild(forecastTempEl)
-
       const icon = days.weather[0].icon;
-      const fff =document.get
       const iconEl = document.createElement('img')
       iconEl.src = 'http://openweathermap.org/img/wn/' + icon + '.png'
       forecastContainer.appendChild(iconEl)
+      const nextDay = day[i]
+      const nextDayEl = document.createElement('p')
+      nextDayEl.innertext = nextDay
+      forecastContainer.appendChild(nextDayEl)
+      const forecastTemp = (days.main.temp_min)
+      const forecastTempEl = document.createElement('p')
+      forecastTempEl.innerText = 'Temp: ' + Math.floor(forecastTemp) + '°F'
+      forecastContainer.appendChild(forecastTempEl)
+      const forecastHumidity = (days.main.humidity)
+      const forecastHumidityEl = document.createElement('p')
+      forecastHumidityEl.innerText = 'Humidity: ' + forecastHumidity + '%'
+      forecastContainer.appendChild(forecastHumidityEl)
+      const forecastWindSpeed = Math.floor(days.wind.speed)
+      const forecastWindSpeedEl = document.createElement('p')
+      forecastWindSpeedEl.innerText = 'Wind Speed: ' + forecastWindSpeed + 'mph'
+      forecastContainer.appendChild(forecastWindSpeedEl)
       
-      
 
-
-      // const forecastSectionEl = document.getElementById("forecastSection")
-      // forecastSectionEl.appendChild(forecastContainer)
-
-     
-      
-
-
-
-      // const nextDay= new Date();
-      //   const days = moment().format('dddd MMMM Do YYYY');
-        // const forecastDate = document.getElementById("forecastDate")
-        // forecastDate.textContent = (forecast.list.dt_txt)
-        // const forecastTemp = document.getElementById('forecastTemp');
-        // forecastTemp.textContent = "Temp: " + ((forecast.list.main.temp - 273.15) * 1.8) + 32 + " degrees" + " F";
-        // const forecastHumidity = document.getElementById('forecastHumidity');
-        // forecastHumidity.textContent = "Humidity: " + (forecast.list.main.humidity) + "%";
-        // const forecastWindSpeed = document.getElementById('forecastWindSpeed');
-        // forecastWindSpeed.textContent = "Wind Speed: " + (forecast.list.wind.speed) + "mph";
-        // const forecastUvIndex = document.getElementById('forecastUvIndex');
-        // forecastUvIndex.textContent = "UV Index: " + (forecast.list.uvi); 
-})
-    
-  }
+}
 })
 }
-
-
-
+// favoriteBtn.click(function(event) {
+//   console.log(event.target.parentNode);
+//   // set data to local storage 
+//   // whenever app loads get() local storage
+// })
 searchBtn.click(function (event) {
-  // document
-  // .getElementById('weatherSearchResults')
-  // .setAttribute('style', 'display: block')
   event.preventDefault()
-  fiveDayForecast ()
+  fiveDayForecast (event)
   
-  const weatherApiUrl= 'https://api.openweathermap.org/data/2.5/weather?q=' + citySearch.val() + '&appid=' + key
+  const weatherApiUrl= 'https://api.openweathermap.org/data/2.5/weather?q=' + citySearch.val() + '&appid=' + key + '&units=imperial'
     $.get({
         url: weatherApiUrl,
       }).then(function(data) {
@@ -79,47 +70,31 @@ searchBtn.click(function (event) {
         
         const city = document.getElementById("city");
         city.textContent += data.name;
+        
+
         const icon = data.weather[0].icon;
         const iconCodeUrl = "https://openweathermap.org/img/w/" + icon + ".png";
         document.getElementById("weatherIcon")
           .setAttribute("src",iconCodeUrl)
-         
-  
-        
-        const today = new Date();
-        const day = moment().format('dddd MMMM Do YYYY');
-        document.getElementById("date").innerHTML = "Today " + day;
+        // const today = new Date();
+        // const day = moment().format('dddd MMMM Do YYYY');
+        document.getElementById("date").innerHTML = day;
         const tempFahrenheit = document.getElementById('temp');
-        tempFahrenheit.textContent = "Temp: " + ((data.main.temp - 273.15) * 1.8) + 32 + " degrees" + " F";
+        tempFahrenheit.textContent = "Temp: " + Math.floor(data.main.temp) + '°F';
         const humidity = document.getElementById('humidity');
         humidity.textContent = "Humidity: " + (data.main.humidity) + "%";
         const windSpeed = document.getElementById('windSpeed');
         windSpeed.textContent = "Wind Speed: " + (data.wind.speed) + "mph";
         const uvIndex = document.getElementById('uvIndex');
         uvIndex.textContent = "UV Index: " + (data.uvi);    
-        
-        
-
-                
-                //
-
-
-        // const nextDay = new Date();
-        // const day2 = moment().utc().format('dddd MMMM Do YYYY');
-        // document.getElementById("date2").innerHTML = + day2;
-
-        // const tempFahrenheit = document.getElementById('temp2');
-        // tempFahrenheit.textContent = "Temp: " + ((getWeatherData.main.temp - 273.15) * 1.8) + 32 + " degrees" + " F";
-        // const humidity2 = document.getElementById('humidity2');
-        // humidity2.textContent = "Humidity: " + (getWeatherData.main.humidity) + "%";
-        // const windSpeed2 = document.getElementById('windSpeed2');
-        // windSpeed2.textContent = "Wind Speed: " + (data.wind.speed) + "mph";
-        // const uvIndex2 = document.getElementById('uvIndex2');
-        // uvIndex2.textContent = "UV Index: " + (data.uvi);  
+        const btn = document.createElement("button")
+        const weatherResults= document.getElementById("weatherSearchResults")
+        weatherResults.appendChild(btn)
+        btn.setAttribute("id", "saveSearchBtn")
 
 
-
-                
+        //set ID attribute to the button globally 
+            
 
               }
             )
