@@ -8,8 +8,16 @@ const day = moment().format('dddd MMMM Do YYYY');
 const key = 'f5c3aa4034bf39238e3769ad247499fd';
 const searchBtn = $('#searchBtn')
 const citySearch = $('#citySearch');
+const previousSearch = []
 
 function fiveDayForecast (event) {
+  const storedCitySearch = JSON.parse(localStorage.getItem('citySearch'))
+  storedCitySearch.innerText = ('')
+
+  // function storeCitySearch(){
+  // localStorage.setItem('citySearch', JSON.stringify(''))
+  // }
+  // storeCitySearch()
   // get citysearch element by id 
   // set the innerText equal to an empty string
   $.get({
@@ -32,10 +40,10 @@ function fiveDayForecast (event) {
       const iconEl = document.createElement('img')
       iconEl.src = 'http://openweathermap.org/img/wn/' + icon + '.png'
       forecastContainer.appendChild(iconEl)
-      const nextDay = day[i]
-      const nextDayEl = document.createElement('p')
-      nextDayEl.innertext = nextDay
-      forecastContainer.appendChild(nextDayEl)
+      // const nextDay = days.coord.dt 
+      // const nextDayEl = document.createElement('p')
+      // nextDayEl.innertext = nextDay
+      // forecastContainer.appendChild(nextDayEl)
       const forecastTemp = (days.main.temp_min)
       const forecastTempEl = document.createElement('p')
       forecastTempEl.innerText = 'Temp: ' + Math.floor(forecastTemp) + '°F'
@@ -53,7 +61,7 @@ function fiveDayForecast (event) {
 }
 })
 }
-// favoriteBtn.click(function(event) {
+// saveBtn.click(function(event) {
 //   console.log(event.target.parentNode);
 //   // set data to local storage 
 //   // whenever app loads get() local storage
