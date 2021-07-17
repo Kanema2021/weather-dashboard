@@ -1,6 +1,7 @@
 /* /*  */
 body {
     background-color:rgb(197, 216, 218)
+
 }
 #title {
     background-color: rgb(68, 84, 108);
@@ -25,7 +26,7 @@ body {
     background-color: seashell;
 }
 
-#searchBtn {
+.btn {
     margin-top: 7px;
     margin-left: 15px;;
     width: 192px;
@@ -47,8 +48,7 @@ body {
     padding-top: 20px;
     padding-bottom: 17px;
     font-weight: bolder;
-    color: rgb(65, 74, 87);
-    
+    color: rgb(65, 74, 87);   
 }
 
 .currentWeather {
@@ -61,33 +61,29 @@ body {
 #weatherIcon {
     padding-left: 50px;
 }
+.forcastSection {
+    display: inline; 
+    align-content: center;
+} 
 
 #forecastContainer {
-    display: flex; 
-    flex-direction: wrap;
-    flex-wrap: nowrap;
-    padding-top: 30px;    
+     margin: auto;    
+     
 }
-#forecastContainer div p {
-    vertical-align: middle;
-}
+     
+ .day {
+     display: flex;
+     flex-direction: row; 
+        
+ }   
 
 
 
 
-/* .results {
-    color:rgb(109, 108, 108);
-    
-} */
 
-/* #resultsBox {
-    
-    border-color: rgb(109, 108, 108); 
-    margin-left: -14px;
-    height: fit-content;
-   
-    
-} */
+
+
+
 
 
 

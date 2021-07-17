@@ -13,52 +13,50 @@
 </head>
 
 <body>
+    <main>
+        <div class="container">
 
-    <div class="container">
-
-        <div class="row">
-            <h1 id="title" class="col-12">Karen's Weather App</h1>
-            <div class="col-3">
-                <!-- <form action="" onsubmit="return false"> -->
-                <input type="text" id="citySearch" placeholder="Type place here!" name="q">
-                <button id="searchBtn">Submit</button>
-                <div class="error"></div>
-            </div>
-            <div id=resultsBox class="col-9">
-                <div id=weatherSearchResults>
-                    <div class="location">
-                        <!-- <img id="weatherIcon" src="" alt=""> -->
-                        <div class="row">
-                            <div class="results" id="city"></div>
-                            <img id="weatherIcon" src="" alt="">
-                        </div> 
-                    </div>
-                    <div>
-                        <div class="currentWeather" id="date"></div>
-                        <div class="currentWeather" id="temp"></div>
-                        <div class="currentWeather" id="humidity"></div>
-                        <div class="currentWeather" id="windSpeed"></div>
-                        <div class="currentWeather" id="uvIndex"></div>
+            <div class="row">
+                <h1 id="title" class="col-12">Weather App</h1>
+                <div class="col-3">
+                    <!-- <form action="" onsubmit="return false"> -->
+                    <input type="text" id="citySearch" placeholder="Type place here!" name="q">
+                    <button class="btn" id="searchBtn">Submit</button>
+                    <button class="btn" id="pastSearchBtns">Past Searches</button>
+                    <div class="error"></div>
+                </div>
+                <div id=resultsBox class="col-9">
+                    <div id=weatherSearchResults>
+                        <div class="location">
+                            <!-- <img id="weatherIcon" src="" alt=""> -->
+                            <div class="row">
+                                <div class="results" id="city"></div>
+                                <img id="weatherIcon" src="" alt="">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="currentWeather" id="date"></div>
+                            <div class="currentWeather" id="temp"></div>
+                            <div class="currentWeather" id="humidity"></div>
+                            <div class="currentWeather" id="windSpeed"></div>
+                            <div class="currentWeather" id="uvIndex"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <section class="forecastSection row justify-content-around" id="">
-                <div class="col-12 col-sm-6 col-lg-4 mb-3" id="forecastContainer"></div>
-                <div class="col" id="forecastContainer"></div>
-                <div class="col" id="forecastContainer"></div>
-                <div class="col" id="forecastContainer"></div>
-                <div class="col" id="forecastContainer"></div>
-
-            </section>
-        </div> 
-
-
-
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
-        <script src="/script.js"></script>
+
+
+        <div class="forecastSection row" id="fiveDay">
+           <div class="day" id="forecastContainer"></div>
+        </div>
+
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+    <script src="/script.js"></script>
 </body>
 
 </html> -
