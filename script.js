@@ -5,38 +5,46 @@ const key = 'f5c3aa4034bf39238e3769ad247499fd';
 const searchBtn = $('#searchBtn')
 const citySearch = $('#citySearch');
 
+const oldSearchData = localStorage.getItem("cities");
+const oldSearches = oldSearchData ? JSON.parse(oldSearchData) : [];
+
 
 function getForecast(event) {
   $.get({
     url: 'https://api.openweathermap.org/data/2.5/forecast?q=' + citySearch.val() + '&appid=' + key + '&units=imperial'
   }).then(function (forecast) {
-    
+    const forecastContainer = document.getElementById("forecastContainer")
+    forecastContainer.innerHTML = '';
     //5 days of forecast 
     for (let i = 4; i < forecast.list.length; i += 8) {
+      //handle the date
+
+      const wrapper = document.createElement('div');
       const days = forecast.list[i];
       // Create an element to hold the temp data:
-      const forecastContainer = document.getElementById("forecastContainer")
+      const forecastDate = new Date(days.dt_txt);
       const icon = days.weather[0].icon;
       const iconEl = document.createElement('img')
       iconEl.src = 'http://openweathermap.org/img/wn/' + icon + '.png'
-      forecastContainer.appendChild(iconEl)
-      const nextDay = day++
+      wrapper.appendChild(iconEl);
+      wrapper.classList = ('wrapper')
       const nextDayEl = document.createElement('p')
-      nextDayEl.innertext = nextDay
-      forecastContainer.appendChild(nextDayEl)
+      nextDayEl.innerText = forecastDate.toDateString();
+      wrapper.appendChild(nextDayEl)
       console.log(nextDayEl)
       const forecastTemp = (days.main.temp_min)
       const forecastTempEl = document.createElement('p')
       forecastTempEl.innerText = 'Temp: ' + Math.floor(forecastTemp) + '°F'
-      forecastContainer.appendChild(forecastTempEl)
+      wrapper.appendChild(forecastTempEl)
       const forecastHumidity = (days.main.humidity)
       const forecastHumidityEl = document.createElement('p')
       forecastHumidityEl.innerText = 'Humidity: ' + forecastHumidity + '%'
-      forecastContainer.appendChild(forecastHumidityEl)
+      wrapper.appendChild(forecastHumidityEl)
       const forecastWindSpeed = Math.floor(days.wind.speed)
       const forecastWindSpeedEl = document.createElement('p')
       forecastWindSpeedEl.innerText = 'Wind Speed: ' + forecastWindSpeed + 'mph'
-      forecastContainer.appendChild(forecastWindSpeedEl)
+      wrapper.appendChild(forecastWindSpeedEl)
+      forecastContainer.appendChild(wrapper);
     }
   })
 }
@@ -47,7 +55,7 @@ searchBtn.click(function (event) {
   // storedCitySearch.innerText = ('')
   getForecast(event)
 
-//current forecast
+  //current forecast
   const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + citySearch.val() + '&appid=' + key + '&units=imperial'
   $.get({
     url: weatherApiUrl,
@@ -55,7 +63,7 @@ searchBtn.click(function (event) {
     console.log(data)
 
     const city = document.getElementById("city");
-    city.textContent += data.name;
+    city.textContent = data.name;
     const icon = data.weather[0].icon;
     const iconCodeUrl = "https://openweathermap.org/img/w/" + icon + ".png";
     document.getElementById("weatherIcon")
@@ -70,32 +78,47 @@ searchBtn.click(function (event) {
     const uvIndex = document.getElementById('uvIndex');
     uvIndex.textContent = "UV Index: " + (data.uvi);
 
-    localStorage.setItem("city", data.name)
+    //get the past searches
+    const inputCity = data.name.toUpperCase();
+    if (!oldSearches.includes(inputCity)) {
+      oldSearches.push(inputCity);
+      localStorage.setItem("cities", JSON.stringify(oldSearches));
+      const btnEl = document.createElement('button')
+      btnEl.classList.add('btn')
+      const pastSearches = document.querySelector('#pastSearches');
+      btnEl.innerText = (data.name)
+      pastSearches.appendChild(btnEl)
+      //localStorage.getItem("city")
 
-    const btnEl = document.createElement('button')
-    btnEl.classList.add('btn')
-    const pastSearches = $('#pastSearches')
-    btnEl.innerText = (data.name)
-    pastSearches.append(btnEl)
-    localStorage.getItem("city")
-    
-
-    function getPastForecastSearches() {
-      btnEl.click(function (event) {
-        event.preventDefault()
-      })
     }
-    getPastForecastSearches(event)
-   // set data to local storage 
-  // whenever app loads get() local storage
-
   }
   )
 }
 )
 
+function loadOldSearches() {
+  const oldSearchData = localStorage.getItem("cities");
+  const oldSearches = oldSearchData ? JSON.parse(oldSearchData) : [];
+  //display the array
+  // console.log(oldSearches);
 
+  if (!oldSearches || oldSearches.length === 0) {
+    return;
+  }
+  const pastSearches = document.querySelector('#pastSearches');
+  oldSearches.forEach(singleCity => {
+    const btnEl = document.createElement('button')
+    btnEl.classList.add('btn')
+    btnEl.innerText = (singleCity)
+    btnEl.addEventListener("click", function(event){
+      getForecast(event)
+    })
+    pastSearches.appendChild(btnEl)
+  })
 
+}
+
+loadOldSearches();
 
 
 

@@ -48,7 +48,8 @@ body {
     padding-top: 20px;
     padding-bottom: 17px;
     font-weight: bolder;
-    color: rgb(65, 74, 87);   
+    color: rgb(65, 74, 87); 
+    margin: 10px;  
 }
 
 .currentWeather {
@@ -68,7 +69,11 @@ body {
 
 #forecastContainer {
      margin: auto;    
-     
+}
+.wrapper {
+    padding: 60px;
+    margin: auto;
+    
 }
      
  .day {
