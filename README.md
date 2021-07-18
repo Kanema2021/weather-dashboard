@@ -1,3 +1,9 @@
+
+<img width="928" alt="Screen Shot 2021-07-18 at 3 02 32 PM" src="https://user-images.githubusercontent.com/82725636/126083735-2ca3ad88-6e85-461f-a36e-ffb675392e19.png">
+<img width="930" alt="Screen Shot 2021-07-18 at 3 03 01 PM" src="https://user-images.githubusercontent.com/82725636/126083737-893e3a6e-6c09-488d-ab05-135ed7ee09ee.png">
+
+
+
 AS A traveler
 I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
